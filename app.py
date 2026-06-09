@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 from rdkit import Chem
 from rdkit.Chem import Descriptors, rdMolDescriptors
-from rdkit.Chem.AllChem import GetMorganFingerprintAsBitVect
+from rdkit.Chem import rdFingerprintGenerator   # new import
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -49,12 +49,14 @@ def extract_features(smiles_str):
         Descriptors.BertzCT(mol),
     ]
 
-    # ECFP4 fingerprint (radius=2, 256 bits)
-    fp4 = GetMorganFingerprintAsBitVect(mol, radius=2, nBits=256)
-    features.extend(int(b) for b in fp4)
+    # ECFP4 fingerprint (radius=2, 256 bits) using modern generator
+    gen4 = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=256)
+    fp4 = gen4.GetFingerprintAsNumPy(mol)   # returns numpy array of 0/1 ints
+    features.extend(int(b) for b in fp4)    # explicit int conversion for safety
 
-    # ECFP6 fingerprint (radius=3, 256 bits)
-    fp6 = GetMorganFingerprintAsBitVect(mol, radius=3, nBits=256)
+    # ECFP6 fingerprint (radius=3, 256 bits) using modern generator
+    gen6 = rdFingerprintGenerator.GetMorganGenerator(radius=3, fpSize=256)
+    fp6 = gen6.GetFingerprintAsNumPy(mol)   # returns numpy array of 0/1 ints
     features.extend(int(b) for b in fp6)
 
     return features   # 525 total features
