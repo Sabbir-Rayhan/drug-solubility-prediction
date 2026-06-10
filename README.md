@@ -314,19 +314,12 @@ Contributions, issues and feature requests are welcome!
 
 ---
 
-## 👨‍💻 Author
-
-**Sabbir Rayhan**
-Department of Computer Science and Engineering
-
-[![GitHub](https://img.shields.io/badge/GitHub-Sabbir--Rayhan-181717?style=flat&logo=github)](https://github.com/Sabbir-Rayhan)
-
 ---
 
 <div align="center">
 
 ### ⭐ Star this repo if it helped you!
 
-*Built with ❤️ using Python · RDKit · XGBoost · Streamlit · SHAP*
+*Built using Python · RDKit · XGBoost · Streamlit · SHAP*
 
 </div>
